@@ -331,7 +331,7 @@ run:
 avrinstall: $(app).hex
 	#to be merged
 ifdef AVR_PLATFORM
-	avrdude -V -F -c stk500v1 -p $(AVR_PLATFORM) -b 57600 -P $(GOODFET) -U flash:w:$(app).hex
+	avrdude -V -c arduino -p $(AVR_PLATFORM) -b 115200 -P $(GOODFET) -U flash:w:$(app).hex
 else
 	avrdude -V -F -c stk500v1 -p m328p -b 57600 -P $(GOODFET) -U flash:w:$(app).hex
 endif
