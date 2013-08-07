@@ -177,7 +177,7 @@ class GoodFET:
         
         baud=115200;
         if(os.environ.get("platform")=='arduino' or os.environ.get("board")=='arduino'):
-            baud=19200; #Slower, for now.
+            baud=38400; #Slower, for now.
         self.serialport = serial.Serial(
             port,
             #9600,
