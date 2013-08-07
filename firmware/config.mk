@@ -173,11 +173,11 @@ GCC := avr-gcc
 CP   = avr-objcopy
 mcu ?= atmega168
 platform ?= arduino
-#BSL := avrdude -V -F -c stk500v1 -p m328p -b 57600 -P /dev/tty.usbserial-* -U flash:w:blink.hex
+#BSL := avrdude -V -F -c stk500v1 -p m328p -b 57600 -P /dev/ttyACM0 -U flash:w:goodfet.hex
 CFLAGS=$(DEBUG) -Iinclude -mmcu=$(mcu) -W -Os -mcall-prologues -Wall -Wextra -Wuninitialized -fpack-struct -fshort-enums -funsigned-bitfields
 LDFLAGS := 
 config := monitor
-AVR_PLATFORM := arduino
+AVR_PLATFORM := m328p
 endif
 
 ifneq (,$(findstring $(board),tilaunchpad))
