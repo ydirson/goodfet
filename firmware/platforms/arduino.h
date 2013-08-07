@@ -15,7 +15,7 @@ void arduino_init();
 //LED on P1.0
 #define PLEDOUT PORTB
 #define PLEDDIR DDRB
-#define PLEDPIN 0x20
+#define PLEDPIN PB5
 
 //Use P3 instead of P5 for target I/O on chips without P5.
 #ifdef msp430f2274

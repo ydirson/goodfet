@@ -12,8 +12,8 @@
 //! Arduino setup code.
 void arduino_init(){
   //LED port as output.
-  DDRB = 0xFF;
-  
+  DDRB = 1 << 5;
+
   //Disabled interrupts.
   cli();
   
