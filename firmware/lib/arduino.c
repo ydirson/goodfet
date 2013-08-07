@@ -20,4 +20,17 @@ void arduino_init(){
   avr_init_uart0();
 }
 
+void led_init(){
+
+  PLEDDIR |= (1 << PLEDPIN);
+}
+
+void  led_on() {
+  PLEDOUT |= (1 << PLEDPIN);
+}
+
+void led_off() {
+  PLEDOUT &= ~(1 << PLEDPIN);
+}
+
 #endif

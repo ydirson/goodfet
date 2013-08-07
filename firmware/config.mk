@@ -170,10 +170,14 @@ endif
 
 ifneq (,$(findstring $(board),arduino))
 GCC := avr-gcc
+CP   = avr-objcopy
 mcu ?= atmega168
+platform ?= arduino
 #BSL := avrdude -V -F -c stk500v1 -p m328p -b 57600 -P /dev/tty.usbserial-* -U flash:w:blink.hex
+CFLAGS=$(DEBUG) -Iinclude -mmcu=$(mcu) -W -Os -mcall-prologues -Wall -Wextra -Wuninitialized -fpack-struct -fshort-enums -funsigned-bitfields
 LDFLAGS := 
 config := monitor
+AVR_PLATFORM := arduino
 endif
 
 ifneq (,$(findstring $(board),tilaunchpad))
