@@ -18,30 +18,10 @@ void arduino_init();
 #define PLEDPIN PB5
 
 //Use P3 instead of P5 for target I/O on chips without P5.
-#ifdef msp430f2274
-//#warning "No P5, using P3 instead.  Will break 2618 and 1612 support."
-#define P5OUT P3OUT
-#define P5DIR P3DIR
-#define P5IN P3IN
-#define P5REN P3REN
-
-#define SPIOUT P3OUT
-#define SPIDIR P3DIR
-#define SPIIN  P3IN
-#define SPIREN P3REN
-#else
-
 #define SPIOUT P5OUT
 #define SPIDIR P5DIR
 #define SPIIN  P5IN
 #define SPIREN P5REN
-
-#endif
-
-//This is how things used to work, don't do it anymore.
-//#ifdef msp430x1612
-//#define P5REN somedamnedextern
-//#endif
 
 //No longer works for Hope badge.
 #define SETSS P5OUT|=BIT0
