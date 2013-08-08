@@ -28,37 +28,39 @@ void serial1_tx(unsigned char x){
 
 //! Set the baud rate.
 void setbaud0(unsigned char rate){
-  //TODO support multiple rates.
-  #define SPEED 9600
-  
-  
+  /* disable everything briefly */
+  UCSR0B = 0;
+
+  int32_t r;
   switch(rate){
   case 1://9600 baud
-    
+    r = 9600;
     break;
   case 2://19200 baud
-    
+    r = 19200;
     break;
   case 3://38400 baud
-    
+    r = 38400;
     break;
   case 4://57600 baud
-    
+    r = 57600;
     break;
+
   default:
   case 5://115200 baud
-    
+    r = 115200;
     break;
   }
-  
-  //#define BAUD 115200L
-#define BAUD 9600L
-#include <util/setbaud.h>
-  UBRR0H = UBRRH_VALUE;
-  UBRR0L = UBRRL_VALUE;
-  
-  UCSR0C = _BV(UCSZ01) | _BV(UCSZ00);
-  UCSR0B = _BV(RXEN0) | _BV(TXEN0);
+
+  /* enabling rx/tx must be done before frame/baud setup */
+  UCSR0B = ((1 << TXEN0) | (1 << RXEN0));
+
+  UCSR0A = (1 << U2X0);   /* double the baud rate */
+  UCSR0C = (3 << UCSZ00); /* 8N1 */
+
+  UBRR0L = (int8_t) (F_CPU/(r*8L)-1);
+  UBRR0H = (F_CPU/(r*8L)-1) >> 8;
+
   return;
   
 }
