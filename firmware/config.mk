@@ -176,7 +176,7 @@ platform ?= arduino
 #BSL := avrdude -V -F -c stk500v1 -p m328p -b 57600 -P /dev/ttyACM0 -U flash:w:goodfet.hex
 CFLAGS=$(DEBUG) -Iinclude -mmcu=$(mcu) -W -Os -mcall-prologues -Wall -Wextra -Wuninitialized -fpack-struct -fshort-enums -funsigned-bitfields
 LDFLAGS := 
-config := monitor
+config := monitor nrf
 AVR_PLATFORM := m328p
 endif
 

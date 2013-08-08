@@ -17,21 +17,18 @@ void arduino_init();
 #define PLEDDIR DDRB
 #define PLEDPIN PB5
 
-//Use P3 instead of P5 for target I/O on chips without P5.
-#define SPIOUT P5OUT
-#define SPIDIR P5DIR
-#define SPIIN  P5IN
-#define SPIREN P5REN
+#define SPIOUT PORTB
+#define SPIDIR DDRB
+#define SPIIN  PINB
 
-//No longer works for Hope badge.
-#define SETSS P5OUT|=BIT0
-#define CLRSS P5OUT&=~BIT0
-#define DIRSS P5DIR|=BIT0;
+// see also include/spi.h
+#define SETSS PORTB|=SS;
+#define CLRSS PORTB&=~SS;
+#define DIRSS DDRB|=SS;
 
-//Used for the Nordic port, !RST pin on regular GoodFET.
-#define SETCE P2OUT|=BIT6
-#define CLRCE P2OUT&=~BIT6
-#define DIRCE P2DIR|=BIT6
+#define SETCE PORTB|=CE
+#define CLRCE PORTB&=~CE
+#define DIRCE PORTB|=CE
 
 // network byte order converters
 #define htons(x) ((((uint16_t)(x) & 0xFF00) >> 8) | \
