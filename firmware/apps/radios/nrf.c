@@ -8,9 +8,11 @@
 #include "platform.h"
 #include "command.h"
 
+#ifdef __MSPGCC__
 #include <signal.h>
 #include <msp430.h>
 #include <iomacros.h>
+#endif
 
 #include "nrf.h"
 #include "spi.h"
