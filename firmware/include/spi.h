@@ -20,15 +20,14 @@
 # define XRST (1 << PA5)
 #elif (platform == arduino)
 // pin Arduini - nrf pin
-// - nrf 1 GND
-// - nrf 2 +3.3V
-# define CE   (1 << PB0) // pin 8 - nrf 3 CE
-# define CS   (1 << PB1) // pin 9 - nrf 4 CSN
-//# define CS  (1 << PB2) // pin 10 CS
+//                                      - nrf 1 GND
+//                                      - nrf 2 +3.3V
+# define CE   (1 << PB1) // pin 9       - nrf 3 CE
+# define CS   (1 << PB2) // pin 10 CS   - nrf 4 CSN
 # define MOSI (1 << PB3) // pin 11 MOSI - nrf 6 MOSI
 # define MISO (1 << PB4) // pin 12 MISO - nrf 7 MISO
 # define SCK  (1 << PB5) // pin 13 SCL  - nrf 5 CLK
-// - nrf 8 IRQ
+//                                      - nrf 8 IRQ
 //# define TST  (1 << PA4)
 //# define XRST (1 << PA5)
 #else
