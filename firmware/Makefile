@@ -365,7 +365,9 @@ $(app): $(app).o $(libs) $(apps)
 armlink: $(app).o $(libs) $(apps) $(platformlibs)
 	arm-none-eabi-ld -v -Tlinkers/stm32f407.cmd -nostartfiles -o goodfet.elf $(app).o $(libs) $(apps)
 	arm-none-eabi-objcopy -Obinary goodfet.elf goodfet.bin
-ifeq ($(platform),donbfet)
+
+#ifeq ($(platform),donbfet)
+ifeq ($(platform),arduino))
 $(app).hex: $(app)
 	avr-objcopy -j .text -j .data -O ihex goodfet goodfet.hex
 else
