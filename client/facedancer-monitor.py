@@ -4,8 +4,16 @@
 
 from Facedancer import *
 
-sp = GoodFETSerialPort(timeout=1)
-fd = Facedancer(sp)
+while True:
+    try:
+        sp = GoodFETSerialPort(timeout=1)
+        fd = Facedancer(sp, verbose=3)
+    except IOError:
+        print(" failed, retrying", file=sys.stderr)
+        sp.close()
+        continue
+    else:
+        break
 
 fd.monitor_app.print_info()
 fd.monitor_app.list_apps()

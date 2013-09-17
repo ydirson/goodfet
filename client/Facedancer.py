@@ -50,6 +50,8 @@ class Facedancer:
         """Read a single command."""
 
         b = self.read(4)
+        if len(b) != 4:
+            raise IOError("received %d bytes only" % len(b))
 
         app = b[0]
         verb = b[1]
