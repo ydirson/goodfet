@@ -27,6 +27,7 @@ class Facedancer:
         self.serialport.setDTR(0)
 
         c = self.readcmd()
+        assert c.verb == 0x7F and c.data == b"http://goodfet.sf.net/"
 
         if self.verbose > 0:
             print("Facedancer reset")
@@ -163,6 +164,8 @@ class GoodFETMonitorApp(FacedancerApp):
         self.device.writecmd(cmd)
         resp = self.device.readcmd()
 
+        assert resp.app == cmd.app and resp.verb == cmd.verb
+        assert len(resp.data) == 1
         return resp.data[0]
 
     def get_infostring(self):
@@ -183,11 +186,14 @@ class GoodFETMonitorApp(FacedancerApp):
         self.device.writecmd(cmd)
 
         resp = self.device.readcmd()
+        assert resp.app == cmd.app and resp.verb == cmd.verb
+        assert len(resp.data) == 16
         print("build date:", resp.data.decode("utf-8"))
 
         print("firmware apps:")
         while True:
             resp = self.device.readcmd()
+            assert resp.app == cmd.app and resp.verb == cmd.verb
             if len(resp.data) == 0:
                 break
             print(resp.data.decode("utf-8"))
@@ -206,6 +212,8 @@ class GoodFETMonitorApp(FacedancerApp):
         cmd = FacedancerCommand(self.app_num, 0xb1, b'')
         self.device.writecmd(cmd)
         resp = self.device.readcmd()
+        assert resp.app == cmd.app and resp.verb == cmd.verb
+        assert len(resp.data) == 0
 
 
 def GoodFETSerialPort(**kwargs):
