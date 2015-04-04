@@ -34,7 +34,10 @@ if sys.argv[1] == "reset":
 
 elif sys.argv[1] == "chain":
     length = client.detect_chain_length()
-    print "\tChain length: %d" % length
+    if length == 1024:
+        print "\tFailed to detect chain length"
+    else:
+        print "\tChain length: %d" % length
 
 elif sys.argv[1] == "chipid":
     if len(sys.argv) < 3:
@@ -46,12 +49,18 @@ elif sys.argv[1] == "chipid":
 
 elif sys.argv[1] == "ir":
     width = client.detect_ir_width()
-    print "\tIR width: %d" % width
+    if width == 1024:
+        print "\tFailed to detect"
+    else:
+        print "\tIR width: %d" % width
 
 elif sys.argv[1] == "detect":
     length = client.detect_chain_length()
-    print "\tChain length: %d" % length
-    for i in range(0, length):
-        id = client.get_device_id(i)
-        print "\tDevice %d ID: 0x%s" % (i, hex(id)[2:].zfill(8).upper())
+    if length == 1024:
+        print "\tFailed to detect chain length"
+    else:
+        print "\tChain length: %d" % length
+        for i in range(0, length):
+            id = client.get_device_id(i)
+            print "\tDevice %d ID: 0x%s" % (i, hex(id)[2:].zfill(8).upper())
 
