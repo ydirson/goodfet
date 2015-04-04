@@ -65,9 +65,9 @@ void monitor_handle_fn(uint8_t const app,
 		break;
 
 	case MONITOR_ECHO:
-	  //Echo back the same buffer.
-	  txdata(app,verb,len);
-	  break;
+		//Echo back the same buffer.
+		txdata(app,verb,len);
+		break;
 
 	case MONITOR_LIST_APPS:
 		// transmit firmware build date
@@ -144,47 +144,47 @@ void monitor_handle_fn(uint8_t const app,
 	case MONITOR_DIR:
 	case MONITOR_IN:
 	case MONITOR_OUT:
-	  debugstr("Command deprecated.");
-	  txdata(app,verb,1);
-	  break;
+		debugstr("Command deprecated.");
+		txdata(app,verb,1);
+		break;
 
 	case MONITOR_SILENT:
-	  silent=cmddata[0];
-	  txdata(app,verb,1);
-      break;
+		silent=cmddata[0];
+		txdata(app,verb,1);
+		break;
 
 	case MONITOR_CONNECTED:
 	  #ifdef MSP430
-	  msp430_init_dco_done();
+		msp430_init_dco_done();
 	  #endif
-	  txdata(app,verb,0);
-	  break;
+		txdata(app,verb,0);
+		break;
 
- 	case MONITOR_LEDTEST:
- 	  //debugstr("Enter LEDTEST.");
- 	  i = 0;
-      #ifdef PLEDOUT
-       i++;
-       led_init();
-       led_on();
-       msdelay(5000);
-       led_off();
-      #endif
-      #ifdef PLED2OUT
-       i++;
-       led2_on();
-       msdelay(5000);
-       led2_off();
-      #endif
-      #ifdef PLED3OUT
-       i++;
-       led3_on();
-       msdelay(5000);
-       led3_off();
-      #endif
-      cmddata[0] = i;       //Return number of LEDs that we flashed.
-      txdata(app,verb,1);
-      break;
+	case MONITOR_LEDTEST:
+		//debugstr("Enter LEDTEST.");
+		i = 0;
+	  #ifdef PLEDOUT
+		i++;
+		led_init();
+		led_on();
+		msdelay(5000);
+		led_off();
+	  #endif
+	  #ifdef PLED2OUT
+		i++;
+		led2_on();
+		msdelay(5000);
+		led2_off();
+	  #endif
+	  #ifdef PLED3OUT
+		i++;
+		led3_on();
+		msdelay(5000);
+		led3_off();
+	  #endif
+		cmddata[0] = i;	      //Return number of LEDs that we flashed.
+		txdata(app,verb,1);
+		break;
 
 	}
 }
