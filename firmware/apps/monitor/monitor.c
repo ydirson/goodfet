@@ -186,6 +186,72 @@ void monitor_handle_fn(uint8_t const app,
 		txdata(app,verb,1);
 		break;
 
+	case MONITOR_SETPIN:
+		switch(cmddata[0])
+		{
+		case MONITOR_PIN_TDO:
+			SPIDIR |= BIT2;
+			if (cmddata[1])
+				SPIOUT |= BIT2;
+			else
+				SPIOUT &= ~BIT2;
+			break;
+		case MONITOR_PIN_TDI:
+			SPIDIR |= BIT1;
+			if (cmddata[1])
+				SPIOUT |= BIT1;
+			else
+				SPIOUT &= ~BIT1;
+			break;
+		case MONITOR_PIN_TMS:
+			SPIDIR |= BIT0;
+			if (cmddata[1])
+				SPIOUT |= BIT0;
+			else
+				SPIOUT &= ~BIT0;
+			break;
+		case MONITOR_PIN_TCK:
+			SPIDIR |= BIT3;
+			if (cmddata[1])
+				SPIOUT |= BIT3;
+			else
+				SPIOUT &= ~BIT3;
+			break;
+		case MONITOR_PIN_TST:
+			P4DIR |= BIT0;
+			if (cmddata[1])
+				P4OUT |= BIT0;
+			else
+				P4OUT &= ~BIT0;
+			break;
+		case MONITOR_PIN_RST:
+			P2DIR |= BIT6;
+			if (cmddata[1])
+				P2OUT |= BIT6;
+			else
+				P2OUT &= ~BIT6;
+			break;
+		case MONITOR_PIN_TX:
+			P3DIR |= BIT6;
+			if (cmddata[1])
+				P3OUT |= BIT6;
+			else
+				P3OUT &= ~BIT6;
+			break;
+		case MONITOR_PIN_RX:
+			P3DIR |= BIT7;
+			if (cmddata[1])
+				P3OUT |= BIT7;
+			else
+				P3OUT &= ~BIT7;
+			break;
+
+		default:
+			cmddata[0] = 0;
+			cmddata[1] = 0;
+		}
+		txdata(app,verb,2);
+		break;
 	}
 }
 

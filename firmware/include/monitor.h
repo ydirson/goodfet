@@ -30,8 +30,25 @@
 #define MONITOR_SIZEBUF 0xC2
 
 #define MONITOR_LEDTEST 0xD0
+#define MONITOR_SETPIN 0xD1
 
 extern app_t const monitor_app;
+
+#define MONITOR_PIN_TDO 1
+// 2: VCC
+#define MONITOR_PIN_TDI 3
+// 4: VCC
+#define MONITOR_PIN_TMS 5
+// 6: unused
+#define MONITOR_PIN_TCK 7
+#define MONITOR_PIN_TST 8
+// 9: GND
+// 10: unused
+#define MONITOR_PIN_RST 11
+#define MONITOR_PIN_RX  12
+// 13: unused
+#define MONITOR_PIN_TX  14
+
 
 #endif // MONITOR_H
 

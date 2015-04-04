@@ -699,6 +699,17 @@ class GoodFET:
         except:
             print "Unable to process response:", self.data
         return 1
+    def setpin(self, pin, value):
+        print "Setting pin %d = %d" % (pin, value)
+        self.writecmd(self.MONITORAPP, 0xD1, 2, [pin, value])
+        if self.data[0] == "\0":
+            print "... pin unsupported by firmware."
+            return 0
+        try:
+            print "... set pin %d to %d." % (ord(self.data[0]), ord(self.data[1]))
+        except:
+            print "Unable to process response:", self.data
+        return 1
 
     def monitor_list_apps(self, full=False): 
         self.monitor_info()

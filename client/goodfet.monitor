@@ -20,6 +20,7 @@ if(len(sys.argv)==1):
     print "%s exec '0x35 0x00 0x..'" % sys.argv[0];
     print "%s listapps [full]" % sys.argv[0]
     print "%s testleds" % sys.argv[0]
+    print "%s setpin $pinnum [01]" % sys.argv[0]
     sys.exit();
 
 #Initialize FET and set baud rate
@@ -128,3 +129,6 @@ if(sys.argv[1]=="verify"):
 
 if(sys.argv[1]=="testleds"):
     client.testleds();
+
+if(sys.argv[1]=="setpin"):
+    client.setpin(int(sys.argv[2]), int(sys.argv[3]))
